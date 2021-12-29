@@ -101,6 +101,8 @@ function doubleValuesWithMap(arr) {
 const double = arr.map(function (num) {
     return num * 2;
 })
+
+return double;
 }
 /*
 Write a function called valTimesIndex which accepts an array and returns a new array with each value multiplied by the index it is currently at in the array.
@@ -190,7 +192,13 @@ Examples:
     findInObj([{first: 'Elie', last:"Schoppik"}, {first: 'Tim', last:"Garcia", isCatOwner: true}, {first: 'Matt', last:"Lane"}, {first: 'Colt', last:"Steele", isCatOwner: true}], 'isCatOwner',true) // {first: 'Tim', last:"Garcia", isCatOwner: true}
 */
 
-function findInObj(arr, key, searchValue) {}
+function findInObj(arr, key, searchValue) {
+    const catOwners = arr.filter(function (own) {
+        return own[key] === searchValue;
+    })
+
+    return catOwners[0];
+}
 
 /*
 Write a function called removeVowels which accepts a string and returns a new string with all of the vowels (both uppercased and lowercased) removed. Every character in the new string should be lowercased.
@@ -201,7 +209,20 @@ Examples:
     removeVowels('ZZZZZZ') // ('zzzzzz')
 */
 
-function removeVowels(str) {}
+function removeVowels(str) {
+    const words = Array.from(str);
+    const isVowel = function (char) {
+       return 'aeiouAEIOU'.indexOf(char) !== -1;
+    };
+    
+    const noVowels = words.filter(function(word){
+        return !isVowel(word);
+    })
+    
+    let final = noVowels.toString().toLowerCase();
+    return final.replace(/,/g,'');
+   // remove comma help found at https://thispointer.com/remove-comma-from-string-in-javascript/
+}
 
 /*
 Write a function called doubleOddNumbers which accepts an array and returns a new array with all of the odd numbers doubled (HINT - you can use map and filter to double and then filter the odd numbers).
@@ -211,4 +232,17 @@ Examples:
     doubleOddNumbers([4,4,4,4,4]) // []
 */
 
-function doubleOddNumbers(arr) {}
+function doubleOddNumbers(arr) {
+    const isEven = function(num){
+        return num % 2 === 0;
+    }
+    const onlyOdds = arr.filter(function(n){
+        return !isEven(n);
+    })
+
+    const double = onlyOdds.map(function(x){
+        return x * 2;
+    })
+
+    return double;
+}
