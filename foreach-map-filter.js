@@ -174,7 +174,13 @@ Examples:
 
 function find(arr, searchValue) {
     const found = arr.indexOf(searchValue);
-    return found + 1;
+    const filtered = arr.filter(function (f){
+        return f === searchValue;
+    })
+    if (filtered.length > 0) {
+    return found + 1;}
+
+    return undefined;
 }
 
 /*
